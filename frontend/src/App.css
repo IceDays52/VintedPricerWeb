@@ -1,0 +1,525 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  color: #111827;
+  background:
+          radial-gradient(circle at top left, rgba(105, 88, 255, 0.25), transparent 28%),
+          radial-gradient(circle at bottom right, rgba(78, 205, 196, 0.18), transparent 26%),
+          linear-gradient(135deg, #070720, #111133 45%, #eef4ff 45%);
+}
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px;
+}
+
+.heroSection {
+  width: 100%;
+  margin-bottom: 28px;
+  padding: 48px;
+  border-radius: 32px;
+  background: rgba(246, 249, 255, 0.96);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+.pill {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #111827;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.pill.dark {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.heroSection h1 {
+  margin: 22px 0 10px;
+  font-size: clamp(42px, 6vw, 82px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+}
+
+.heroSection p {
+  max-width: 720px;
+  margin: 0;
+  color: #667085;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(340px, 42%) 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.leftPanel,
+.rightPanel {
+  border-radius: 32px;
+  background: rgba(246, 249, 255, 0.96);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+.leftPanel {
+  padding: 28px;
+  position: sticky;
+  top: 30px;
+}
+
+.rightPanel {
+  padding: 28px;
+  min-height: 620px;
+}
+
+.uploadCard,
+.imageCard,
+.placeholderCard,
+.infoCard,
+.priceBox,
+.bigCard {
+  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.uploadCard {
+  padding: 26px;
+  text-align: center;
+}
+
+.uploadCard h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+.uploadCard p {
+  margin: 0 0 22px;
+  color: #667085;
+}
+
+.uploadButton input {
+  display: none;
+}
+
+.uploadButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: #111827;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.uploadButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.22);
+}
+
+.fileName {
+  display: block;
+  margin-top: 14px;
+  font-size: 13px;
+  color: #667085;
+}
+
+.imageCard {
+  margin-top: 22px;
+  min-height: 520px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+          linear-gradient(135deg, rgba(238, 242, 255, 0.7), rgba(255, 255, 255, 1));
+}
+
+.previewImage {
+  width: 100%;
+  max-height: 680px;
+  object-fit: contain;
+  display: block;
+}
+
+.emptyPreview {
+  color: #98a2b3;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.analyzeButton {
+  width: 100%;
+  margin-top: 22px;
+  padding: 18px 24px;
+  border: none;
+  border-radius: 999px;
+  background: #4f46e5;
+  color: white;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 18px 40px rgba(79, 70, 229, 0.28);
+}
+
+.analyzeButton:hover {
+  transform: translateY(-2px);
+  background: #4338ca;
+}
+
+.analyzeButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.placeholderCard {
+  padding: 70px 40px;
+  min-height: 560px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:
+          radial-gradient(circle at bottom right, rgba(79, 70, 229, 0.14), transparent 35%),
+          #ffffff;
+}
+
+.placeholderCard h2 {
+  margin: 18px 0 10px;
+  font-size: 36px;
+  letter-spacing: -1px;
+}
+
+.placeholderCard p {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #667085;
+  line-height: 1.7;
+}
+
+.spinner {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 4px solid #e5e7eb;
+  border-top-color: #4f46e5;
+  animation: spin 0.85s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.resultHeader {
+  margin-bottom: 22px;
+  padding: 32px;
+  border-radius: 28px;
+  background:
+          radial-gradient(circle at top right, rgba(79, 70, 229, 0.18), transparent 35%),
+          #ffffff;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.resultHeader h2 {
+  margin: 18px 0 0;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.priceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.priceBox {
+  padding: 26px;
+}
+
+.priceBox span {
+  display: block;
+  margin-bottom: 12px;
+  color: #667085;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.priceBox strong {
+  display: block;
+  font-size: 38px;
+  letter-spacing: -1.5px;
+}
+
+.priceBox p {
+  margin: 10px 0 0;
+  color: #667085;
+  line-height: 1.5;
+}
+
+.priceBox.featured {
+  background:
+          radial-gradient(circle at top right, rgba(79, 70, 229, 0.22), transparent 40%),
+          #111827;
+  color: white;
+}
+
+.priceBox.featured span,
+.priceBox.featured p {
+  color: #d1d5db;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.infoCard {
+  padding: 24px;
+}
+
+.infoCard span {
+  color: #667085;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.infoCard p {
+  margin: 10px 0 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.bigCard {
+  padding: 28px;
+  margin-top: 18px;
+}
+
+.bigCard h3 {
+  margin: 0 0 14px;
+  font-size: 24px;
+}
+
+.bigCard p {
+  margin: 0;
+  color: #475467;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* TABLET */
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .leftPanel {
+    position: static;
+  }
+
+  .imageCard {
+    min-height: 420px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .app {
+    padding: 16px;
+  }
+
+  .heroSection {
+    padding: 28px;
+    border-radius: 26px;
+  }
+
+  .heroSection h1 {
+    letter-spacing: -2px;
+  }
+
+  .heroSection p {
+    font-size: 15px;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    padding: 18px;
+    border-radius: 26px;
+  }
+
+  .uploadCard,
+  .imageCard,
+  .placeholderCard,
+  .infoCard,
+  .priceBox,
+  .bigCard,
+  .resultHeader {
+    border-radius: 22px;
+  }
+
+  .imageCard {
+    min-height: 320px;
+  }
+
+  .priceGrid,
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .placeholderCard {
+    min-height: 360px;
+    padding: 40px 24px;
+  }
+
+  .placeholderCard h2 {
+    font-size: 28px;
+  }
+
+  .priceBox strong {
+    font-size: 34px;
+  }
+
+  .resultHeader {
+    padding: 24px;
+  }
+
+  .resultHeader h2 {
+    letter-spacing: -1px;
+  }
+}
+.offersGrid {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.offerCard {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  color: inherit;
+  text-decoration: none;
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.offerCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+}
+
+.offerCard img,
+.offerImageFallback {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: #eef2ff;
+}
+
+.offerImageFallback {
+  display: grid;
+  place-items: center;
+  color: #4f46e5;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.offerCard span {
+  display: block;
+  margin-bottom: 5px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.offerCard strong {
+  display: block;
+  color: #0f172a;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.offerCard p {
+  margin: 6px 0 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.offerPrice {
+  color: #4f46e5 !important;
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .offerCard {
+    grid-template-columns: 72px 1fr;
+  }
+
+  .offerCard img,
+  .offerImageFallback {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+
+.offerScore {
+  margin-top: 8px;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+.offerBadge {
+  margin-top: 8px;
+  display: inline-block;
+  background: #111;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
