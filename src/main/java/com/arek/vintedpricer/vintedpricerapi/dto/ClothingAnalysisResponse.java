@@ -19,12 +19,15 @@ public class ClothingAnalysisResponse {
     public String suggestedDescription;
     public List<String> keywords;
 
-    // Kluczowe pola dla stabilności kompilacji i widoku
     public List<String> searchQueries;
     public List<SimilarOffer> similarOffers;
 
     public Double averagePrice;
     public Double medianPrice;
+    public Integer minPrice;
+    public Integer maxPrice;
+    public Integer offersAnalyzed;
+
     public Integer opportunityScore;
     public String uploadedImageUrl;
 }

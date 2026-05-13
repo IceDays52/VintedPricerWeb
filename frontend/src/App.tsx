@@ -8,7 +8,14 @@ type SimilarOffer = {
     source: string;
     snippet: string;
     imageUrl?: string;
+
     detectedPrice?: number;
+
+    brand?: string;
+    size?: string;
+    dealScore?: number;
+    dealLabel?: string;
+
     opportunityScore?: number;
     badge?: string;
 };
@@ -27,6 +34,10 @@ type AnalysisResult = {
 
     averagePrice?: number;
     medianPrice?: number;
+    minPrice?: number;
+    maxPrice?: number;
+    offersAnalyzed?: number;
+
     opportunityScore?: number;
 
     priceComment: string;
@@ -48,18 +59,10 @@ function App() {
     const handleFileChange = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        const files = Array.from(
-            event.target.files || []
-        ).slice(0, 3);
+        const files = Array.from(event.target.files || []).slice(0, 3);
 
         setSelectedFiles(files);
-
-        setPreviewUrls(
-            files.map((file) =>
-                URL.createObjectURL(file)
-            )
-        );
-
+        setPreviewUrls(files.map((file) => URL.createObjectURL(file)));
         setResult(null);
     };
 
@@ -89,7 +92,6 @@ function App() {
             );
 
             console.log("WYNIK Z BACKENDU:", response.data);
-
             setResult(response.data);
 
         } catch (error) {
@@ -297,6 +299,36 @@ function App() {
                                 />
 
                                 <InfoCard
+                                    title="Liczba ofert"
+                                    value={
+                                        result.offersAnalyzed !== undefined &&
+                                        result.offersAnalyzed !== null
+                                            ? `${result.offersAnalyzed}`
+                                            : "Brak danych"
+                                    }
+                                />
+
+                                <InfoCard
+                                    title="Najniższa cena"
+                                    value={
+                                        result.minPrice !== undefined &&
+                                        result.minPrice !== null
+                                            ? `${result.minPrice} zł`
+                                            : "Brak danych"
+                                    }
+                                />
+
+                                <InfoCard
+                                    title="Najwyższa cena"
+                                    value={
+                                        result.maxPrice !== undefined &&
+                                        result.maxPrice !== null
+                                            ? `${result.maxPrice} zł`
+                                            : "Brak danych"
+                                    }
+                                />
+
+                                <InfoCard
                                     title="Okazja"
                                     value={
                                         result.opportunityScore !== undefined &&
@@ -331,7 +363,6 @@ function App() {
                                     Podobne oferty
                                 </h3>
 
-
                                 {result.similarOffers?.length > 0 ? (
 
                                     <div className="offersGrid">
@@ -360,9 +391,9 @@ function App() {
 
                                                     <div>
 
-                        <span>
-                            {offer.source}
-                        </span>
+                                                        <span>
+                                                            {offer.source}
+                                                        </span>
 
                                                         <strong>
                                                             {offer.title}
@@ -372,6 +403,30 @@ function App() {
                                                             <p className="offerPrice">
                                                                 Około {offer.detectedPrice} zł
                                                             </p>
+                                                        )}
+
+                                                        {offer.brand && (
+                                                            <p className="offerMeta">
+                                                                Marka: {offer.brand}
+                                                            </p>
+                                                        )}
+
+                                                        {offer.size && (
+                                                            <p className="offerMeta">
+                                                                Rozmiar: {offer.size}
+                                                            </p>
+                                                        )}
+
+                                                        {offer.dealScore !== undefined && (
+                                                            <p className="offerScore">
+                                                                Deal score: {offer.dealScore}%
+                                                            </p>
+                                                        )}
+
+                                                        {offer.dealLabel && (
+                                                            <div className="offerBadge">
+                                                                {offer.dealLabel}
+                                                            </div>
                                                         )}
 
                                                         {offer.opportunityScore !== undefined && (

@@ -6,5 +6,11 @@ public class SimilarOffer {
     public String source;
     public String snippet;
     public String imageUrl;
+
     public Integer detectedPrice;
+
+    public String brand;
+    public String size;
+    public Integer dealScore;
+    public String dealLabel;
 }
